@@ -29,9 +29,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2022, ubuntu-22.04, ubuntu-22.04-arm, macos-13, macos-14] # macOS-13 is for x64, macOS-14 is for arm64
+        os: [windows-2022, ubuntu-22.04, ubuntu-22.04-arm, macos-13-intel, macos-14] # macOS-15-intel is for x64, macOS-14 is for arm64
         #os: [ubuntu-22.04, macos-14]
-        #os: [windows-2022, ubuntu-22.04, macos-13, macos-14]
+        #os: [windows-2022, ubuntu-22.04, macos-15-intel, macos-14]
         #os: [ubuntu-22.04-arm]
         node: ["22.x"]
 
@@ -157,7 +157,7 @@ jobs:
         if: runner.os == 'macOS'
         uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 #4.6.1
         with:
-          name: ${{ matrix.os == 'macos-13' && 'mac-x64' || matrix.os == 'macos-14' && 'mac-arm64'}}
+          name: ${{ matrix.os == 'macos-15-intel' && 'mac-x64' || matrix.os == 'macos-14' && 'mac-arm64'}}
           path: |
             applications/electron/dist/**
             !applications/electron/dist/mac/**
